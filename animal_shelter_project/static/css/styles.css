@@ -1,0 +1,377 @@
+/* styles.css */
+
+
+html,
+header,
+nav,
+ul,
+li,
+main,
+footer {
+    padding: 10px;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    color: #333;
+
+}
+
+header div {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+
+}
+
+header nav {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+}
+
+.logo img {
+    height: 300px;
+
+}
+
+.header.image img {
+    max-width: 100%;
+    padding-bottom: 60px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    padding-bottom: 60px;
+    font-size: x-large;
+    transition: color 0.9s ease;
+    text-decoration: none;
+}
+
+nav ul li {
+    margin-left: 200px;
+
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s ease;
+
+}
+
+nav ul li a:hover {
+    color: #007bff;
+}
+
+main {
+    padding-bottom: 20px;
+    margin-top: 50px;
+}
+
+h1 {
+    text-align: center;
+}
+
+
+/* Shelter list styles */
+
+.shelter-list ul a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.shelter-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.shelter-image {
+    max-width: 300px;
+    margin-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .shelter-item {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 40px;
+    }
+
+    .shelter-image {
+        margin-right: 0;
+        margin-bottom: 40px;
+        padding-top: 40px;
+    }
+}
+
+
+form {
+    width: 100%;
+    margin: -10px;
+    padding-top: 50px;
+}
+
+
+/* Style form fields */
+input[type="text"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style the submit button */
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Change button color on hover */
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+.pet-detail {
+    padding: 50px 0;
+}
+
+.pet-detail img {
+    max-width: 100%;
+}
+
+.pet-detail h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.pet-detail h2 {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* Center the paragraph vertically */
+.row {
+    display: flex;
+    align-items: center;
+}
+
+.shelter-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.shelter-image {
+    max-width: 300px;
+    margin-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .shelter-item {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 40px;
+    }
+
+    .shelter-image {
+        margin-right: 0;
+        margin-bottom: 40px;
+        padding-top: 40px;
+    }
+}
+
+
+form {
+    width: 100%;
+    margin: -10px;
+    padding-top: 50px;
+}
+
+
+/* Style form fields */
+input[type="text"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style the submit button */
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Change button color on hover */
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+.pet-detail {
+    padding: 50px 0;
+}
+
+.pet-detail img {
+    max-width: 100%;
+}
+
+.pet-detail h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.pet-detail h2 {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* Center the paragraph vertically */
+.row {
+    display: flex;
+    align-items: center;
+}
+
+/* Style the paragraph */
+.col-md-4 p {
+    margin: 0;
+    /* Remove default margin */
+    padding: 20px;
+    /* Add some padding */
+}
+
+/* Optionally, add some spacing between the elements */
+.col-md-4 {
+    padding: 10px;
+}
+
+
+.img-fluid {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    width: 100px;
+    height: 100px;
+}
+
+.home_page img {
+    width: 500px;
+
+}
+
+
+/* Style the paragraph */
+.col-md-4 p {
+    margin: 0;
+    /* Remove default margin */
+    padding: 20px;
+    /* Add some padding */
+}
+
+/* Optionally, add some spacing between the elements */
+.col-md-4 {
+    padding: 10px;
+}
+
+/* Optionally, add border to the images */
+.img-fluid {
+    border: 2px solid #ddd;
+    /* Example border */
+    border-radius: 8px;
+    /* Optional: add border radius */
+    max-width: 100%;
+    /* Ensure images don't overflow */
+    height: auto;
+    /* Maintain aspect ratio */
+}
+
+.home_page img {
+    width: 500px;
+
+}
+
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}

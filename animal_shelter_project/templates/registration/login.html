@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Log In{% endblock title %}
+{% block content %}
+
+<section>
+    <div class="container">
+        <div class="login-image-wrapper">
+            <img src="{% static 'img/dog-head.jpg' %}" alt="dog-head" class="login-image">
+        </div>
+        <h2>Log In</h2>
+        <form method="post" class="needs-validation" novalidate>
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.username|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                {{ form.password|as_crispy_field }}
+            </div>
+            <button type="submit" class="btn btn-primary">Log In</button>
+            <p style="color: #414d33;"><a href="{% url 'password_reset' %}">Forgot your password?</a></p>
+        </form>
+    </div>
+</section>
+
+<style>
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .login-image-wrapper {
+        overflow: hidden;
+        height: 50%;
+
+    }
+
+    .login-image {
+        width: 100%;
+        display: block;
+        margin-top: -300px;
+        filter: brightness(70%);
+
+    }
+
+    .container {
+        width: 70%;
+        margin-bottom: 200px;
+        /* Add margin at the bottom */
+    }
+
+    .footer {
+        margin-top: 250px;
+        /* Add margin at the top */
+    }
+</style>
+
+{% endblock content %}

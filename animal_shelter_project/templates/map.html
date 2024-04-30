@@ -1,0 +1,130 @@
+{%if locations != None %}
+<input type="number" id="longitude" value="{{locations.longitude}}" hidden />
+<input type="number" id="latitude" value="{{locations.latitude}}" hidden />
+<input type="text" id="name" value="{{locations.name}}" hidden />
+{%endif%}
+{%if locations_user != None %}
+<input type="number" id="longitude_user" value="{{locations_user.longitude}}" hidden />
+<input type="number" id="latitude_user" value="{{locations_user.latitude}}" hidden />
+<input type="text" id="name_user" value="{{locations_user.name}}" hidden />
+{%else%}
+<input type="number" id="longitude_user" value="" hidden />
+<input type="number" id="latitude_user" value="" hidden />
+<input type="text" id="name_user" value="" hidden />
+
+{%endif%}
+{%if map != None %}
+<input type="text" id="map" value="{{map}}" hidden />
+{%else%}
+<input type="text" id="map" value="" hidden />
+{% endif%}
+<script>
+      L_NO_TOUCH = false;
+      L_DISABLE_3D = false;
+</script>
+
+<style>
+      html,
+      body {
+            width: 100vw;
+            height: 50vh;
+            margin: 0;
+            padding: 0;
+      }
+
+      #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+      }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css" />
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css" />
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css" />
+
+
+<style>
+      #map_d85e1bd171655d095230c2189416ac76 {
+            position: relative;
+            width: 100.0%;
+            height: 100.0%;
+            left: 0.0%;
+            top: 0.0%;
+      }
+
+      .leaflet-container {
+            font-size: 1rem;
+      }
+</style>
+
+
+<div class="folium-map" id="map_d85e1bd171655d095230c2189416ac76"></div>
+
+
+<script>
+      var name = document.getElementById('name').value
+      var long = Number(document.getElementById('longitude').value)
+      var lati = Number(document.getElementById('latitude').value)
+      var name_user = document.getElementById('name_user').value
+      var long_user = Number(document.getElementById('longitude_user').value)
+      var lati_user = Number(document.getElementById('latitude_user').value)
+
+      var map = JSON.parse(document.getElementById('map').value)
+
+      var map_d85e1bd171655d095230c2189416ac76 = L.map(
+            "map_d85e1bd171655d095230c2189416ac76",
+            {
+                  center: [lati, long],
+                  crs: L.CRS.EPSG3857,
+                  zoom: 15,
+                  zoomControl: true,
+                  preferCanvas: false,
+            }
+      );
+
+      var tile_layer_ab7ee058fb77d4c6a3dc19e7231ab3c4 = L.tileLayer(
+            "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+            { "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 25, "maxZoom": 25, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false }
+      );
+
+      tile_layer_ab7ee058fb77d4c6a3dc19e7231ab3c4.addTo(map_d85e1bd171655d095230c2189416ac76);
+      if (lati > 1) {
+            var marker_f5029855fb93f1beaccd4eb2c9521a40 = L.marker(
+                  [lati, long],
+                  {}
+            ).addTo(map_d85e1bd171655d095230c2189416ac76);
+            var popup_3751ea48e6c17255a59c413bf8aeee2a = L.popup({ "maxWidth": "100%" });
+            var html_1c0e3e6cb85786cf70f69acdc3d103e7 = $(`<div id="html_1c0e3e6cb85786cf70f69acdc3d103e7" style="width: 20vw; height: 20vh;">${name}</div>`)[0];
+            popup_3751ea48e6c17255a59c413bf8aeee2a.setContent(html_1c0e3e6cb85786cf70f69acdc3d103e7);
+            marker_f5029855fb93f1beaccd4eb2c9521a40.bindPopup(popup_3751ea48e6c17255a59c413bf8aeee2a)
+                  ;
+      } else { }
+      if (lati_user > 1) {
+            var marker_user = L.marker(
+                  [lati_user, long_user],
+                  {}
+            ).addTo(map_d85e1bd171655d095230c2189416ac76);
+            var popup_user = L.popup({ "maxWidth": "100%" });
+            var html_user = $(`<div id="html_user" style="width: 20vw; height: 20vh;">${name}</div>`)[0];
+            popup_user.setContent(html_user);
+            marker_user.bindPopup(popup_user);
+      } else { }
+      if (1 < map.length) {
+            var poly_line_39fae5bb2a92bf55836435f8800601e1 = L.polyline(
+                  map,
+                  { "bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 1.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3.5 }
+            ).addTo(map_d85e1bd171655d095230c2189416ac76);
+      } else { }
+
+</script>

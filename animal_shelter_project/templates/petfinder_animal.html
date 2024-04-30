@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<section class="details-section">
+    <h1>Animal</h1>
+
+    {% if error_message %}
+    <p>{{ error_message }}</p>
+    {% else %}
+    <h1>Animals</h1>
+    <ul>
+        {% for animal in animals %}
+        <li>{{ animal.name }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endblock %}

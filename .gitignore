@@ -1,0 +1,12 @@
+# Here we are ignoring the virtual env because it is not good to push it to GitHub.
+# If your virtual env has a different name, please add it here and save the file.
+
+# Ignore virtual environment directories
+venv/
+env/
+.venv/
+.env/
+backandAPI/.env
+backandAPI/db.sqlite3
+animal_shelter_project/.env
+animal_shelter_project/db.sqlite3

@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+{%block style%}
+<link rel="stylesheet" href="{% static 'css/customstyle.css' %}">
+{%endblock%}
+{% block content %}
+<section class="container">
+    <div class="left-section">
+        <h1>My Profile</h1>
+
+        <div class="profile-image">
+            {% if user.image %}
+            <img src="{{ user.image.url }}" alt="Profile Image"
+                style="width: auto; height: 200px; margin-bottom: 20px; margin-top: 20px;">
+            {% else %}
+            <p>No profile image available</p>
+            {% endif %}
+        </div>
+
+        <div class="user-details">
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Address:</strong> {{ user.street_address }}, {{ user.city }}, {{ user.country }}</p>
+            <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
+            <p><strong>Website:</strong> {{ profile.website }}</p>
+            <p><strong>Description:</strong> {{ profile.get_description }}</p>
+        </div>
+
+    </div>
+    <div class="right-section">
+        <div class="buttons-container">
+            <a href="{% url 'user_managment_app:edit_shelter_profile' %}" class="btn btn-primary btn-block"
+                style="margin-top: 10px;">Edit profile</a>
+            <a href="{% url 'animal_shelter_app:add_pet' %}" class="btn btn-primary btn-block">Add Pet</a>
+            <a href="{% url 'animal_shelter_app:pet_list_shelter' profile.pk %}" class="btn btn-primary btn-block">My
+                Pets</a>
+            <a href="{% url 'animal_shelter_app:manager_adopt_applications' %}" class="btn btn-primary btn-block">Manage
+                Adoption Applications</a>
+        </div>
+
+    </div>
+
+</section>
+<div class="row" style="height:50vh;">
+
+    {% include 'map.html'%}
+    <h1>up DOWN</h1>
+    {% include 'shmap.html'%}
+</div>
+
+
+<style>
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        margin-bottom: 20px;
+    }
+
+    .left-section {
+        margin-top: 50px;
+        flex: 0 0 65%;
+        margin-bottom: 50px;
+    }
+
+    .right-section {
+        flex: 0 0 30%;
+        /* Adjust width as needed */
+        text-align: left;
+    }
+
+    .user-details p {
+        margin: 5px 0;
+        text-align: left;
+        margin-bottom: 10px;
+        /* Add space between user details */
+    }
+
+    .buttons-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Center items horizontally */
+    }
+
+    .btn-block {
+        width: 100%;
+    }
+</style>
+
+{% endblock %}

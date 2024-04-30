@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="pet-detail-wrapper">
+        <div class="pet-detail-photo">
+            <img src="{{ pet.photos.url }}" alt="{{ pet.name }} picture">
+        </div>
+        <div class="pet-detail-text">
+            <h1>Pet Detail</h1>
+            <p style="text-align: left; margin-bottom: 5px;"><strong>Name:</strong> {{ pet.name }}</p>
+            <p style="text-align: left; margin-bottom: 5px;"><strong>Species:</strong> {{ pet.species }}</p>
+            <p style="text-align: left; margin-bottom: 5px;"><strong>Breeds:</strong> {{ pet.breeds }}</p>
+            <p style="text-align: left; margin-bottom: 5px;"><strong>Age:</strong> {{ pet.age }}</p>
+            <p style="text-align: left; margin-bottom: 5px;"><strong>Gender:</strong> {{ pet.gender }}</p>
+            <p style="text-align: left; margin-bottom: 5px;"><strong>Size:</strong> {{ pet.size }}</p>
+            <p style="text-align: left; margin-bottom: 5px;"><strong>Weight:</strong> {{ pet.weight }}</p>
+            <p style="text-align: left; margin-bottom: 5px;"><strong>Description:</strong> {{ pet.get_description }}</p>
+            <p style="text-align: left; margin-bottom: 5px;"><strong>Status:</strong> {{ pet.status }}</p>
+            <p style="text-align: left; margin-bottom: 5px;"><strong>Shelter:</strong> {{ pet.shelter.shelter_name }}
+            </p>
+        </div>
+    </div>
+    <div class="pet-detail-actions" style="margin-top: 30px;">
+        {% if user.is_authenticated %}
+        {% if user.is_shelter and pet.shelter_id == shelter.id %}
+        <a href="{% url 'animal_shelter_app:edit_pet_profile' pet.id %}" class="btn btn-primary">Edit Pet Profile</a>
+
+        {% else %}
+        <a href="{% url 'animal_shelter_app:adoption_form' pet.id %}" class="btn btn-primary">Adopt pet</a>
+        <div class="mt-2 row mb-2">
+            <div class="row pb-2">
+                {% include 'map.html'%}
+            </div>
+
+        </div>
+        {% endif %}
+        {% else %}
+        <p><strong>Log In or Sign Up to Adopt {{ pet.name }}</strong></p>
+        <a href="{% url 'user_managment_app:login' %}" class="btn btn-primary">Login</a>
+        <a href="{% url 'user_managment_app:signup' %}" class="btn btn-primary">Sign Up</a>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    .content-wrapper {
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container {
+        flex-grow: 1;
+    }
+</style>
+
+{% endblock %}

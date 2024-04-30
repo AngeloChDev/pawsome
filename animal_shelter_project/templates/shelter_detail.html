@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container space" style="color:rgb(235, 252, 254);font-size:1em;font-weight: bolder;">
+
+
+    <h2>Shelter Detail</h2>
+    <div class="profile-details">
+        <div class="profile-image">
+            {% if shelter.user.image %}
+            <img src="{{ shelter.user.image.url }}" alt="Profile Image" style="max-width: 400px;">
+            {% else %}
+            <p>No profile image available</p>
+            {% endif %}
+        </div>
+        <div class="user-details">
+
+            <p><strong>Email:</strong> {{ shelter.user.email }}</p>
+            <p><strong>Address:</strong> {{ shelter.user.street_address }}, {{ user.city }}, {{ user.country }}</p>
+            <p><strong>Phone Number:</strong> {{ shelter.user.phone_number }}</p>
+            <p><strong>Website:</strong> {{ shelter.website }}</p>
+            <p><strong>Description:</strong> {{ shelter.get_description }}</p>
+            <div class="mt-2 row mb-2">
+
+
+            </div>
+
+        </div>
+    </div>
+    <div class="row pb-2 pt-0 m-2" style="height:40vh">
+        {% include 'map.html'%}
+    </div>
+</div>
+
+
+<div class="container" style="margin-top: -140px; color:rgb(226, 232, 233)">
+    <section class="pet-section">
+        <h1>Pets in this shelter:</h1>
+        <div style="padding: 20px 20px;">
+            <form id="filter-form" method="GET"
+                style="display: flex; flex-wrap: wrap; align-items: center; background-color: #8884846e; padding: 10px;"
+                class="space">
+                <div class="form-group" style="margin-right: 10px;">
+                    <label for="species">Species:</label>
+                    <select id="species" name="species" class="form-control">
+                        <option value="">All Species</option>
+                        <option value="dog">Dog</option>
+                        <option value="cat">Cat</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="margin-right: 10px;">
+                    <label for="gender">Gender:</label>
+                    <select id="gender" name="gender" class="form-control">
+                        <option value="">All Genders</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="margin-right: 10px;">
+                    <label for="size">Size:</label>
+                    <select id="size" name="size" class="form-control">
+                        <option value="">All Sizes</option>
+                        <option value="small">Small</option>
+                        <option value="medium">Medium</option>
+                        <option value="large">Large</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="margin-top: 10px;">
+                    <button type="submit" class="btn btn-primary space">Filter</button>
+                </div>
+            </form>
+        </div>
+        <div class="pet-cards">
+            {% for pet in pets %}
+            <div class="pet-card">
+                <a href="{% url 'animal_shelter_app:pet_detail' pet.pk %}">
+                    <div class="pet-image">
+                        <img src="{{ pet.photos.url }}" alt="{{ pet.name }} Image">
+                    </div>
+                    <div class="pet-details">
+                        <h3>{{ pet.name }}</h3>
+                        <p>{{ pet.species }} - {{ pet.age }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+
+
+
+<style>
+    .space {
+        font-size: 1.25em;
+        letter-spacing: 3px;
+        line-height: 1.4em;
+        text-shadow: 1px 6px 15px #000;
+    }
+
+    .profile-details {
+        display: flex;
+        align-items: center;
+    }
+
+    .profile-image {
+        margin-right: 50px;
+        margin-left: 50px;
+
+    }
+
+    .user-details p {
+        margin: 5px 0;
+        text-align: left;
+    }
+</style>
+
+{% endblock %}

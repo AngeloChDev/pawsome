@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>{% block title %}Pawsome{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/customstyle.css' %}">
+    {%block style%}{%endblock%}
+
+</head>
+
+
+<body>
+    <header class="navbar">
+
+        <nav class="navbar navbar-expand-lg bg-body-tertiary bg-radiant shadow">
+            <div class="container-fluid fs-4 ms-2">
+                <span class="navbar-text me-4"
+                    style="color: aliceblue;font-family: American Typewriter;font-size: 24px;">
+                    Welcome
+                    {% if user.is_authenticated %}
+                    {% if user.is_shelter %}
+                    {{shelter.shelter_name}}
+
+                    {%endif%}
+                    {{user.username}}
+                    {%endif%}
+                </span>
+                <button class="navbar-toggler" style="color: aliceblue; background-color:gray;" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon" style="color: aliceblue;"></span>
+                </button>
+                <div class="collapse navbar-collapse ms-2 me-4" id="navbarText">
+                    <ul class="navbar-nav mb-2 ">
+                        <li class="nav-item m-2">
+                            <a class="btn btn-primary link" href="{% url 'home' %}"
+                                style="margin-left: 10px;background-color: #414d33;font-family: American Typewrite; font-size: 18px;">Home</a>
+                        </li>
+                        <li class="nav-item m-2">
+                            <a class=" btn btn-primary link "
+                                style="background-color: #414d33;text-decoration:none;font-family: American Typewrite; font-size: 18px;"
+                                href="{% url 'user_managment_app:shelter_list' %}">Shelters</a>
+                        </li>
+                        <li class="nav-item m-2">
+                            <a class="btn btn-primary link "
+                                style="background-color: #414d33;text-decoration:none;font-family: American Typewrite; font-size: 18px;"
+                                href="{% url 'animal_shelter_app:pet_list' %}">Pets</a>
+                        </li>
+                        <li class="nav-item m-2">
+                            <a class="btn btn-primary link" href="{% url 'dashboard:dashboard' %}"
+                                style="background-color: #414d33;text-decoration:none;font-family: American Typewrite; font-size: 18px;">Dashboard
+                                overview</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        {% if user.is_shelter %}
+                        <li class="nav-item m-2"><a href="{% url 'user_managment_app:shelter_profile' %}"
+                                class="btn btn-primary link"
+                                style="background-color: #414d33;text-decoration:none;font-family: American Typewrite; font-size: 18px;">My
+                                profile</a></li>
+                        <li class="nav-item m-2"><a href="{% url 'animal_shelter_app:add_pet' %}"
+                                class="btn btn-primary link"
+                                style="background-color: #414d33;text-decoration:none;font-family: American Typewrite; font-size: 18px;">+
+                                Add Pet</a></li>
+                        {% else %}
+                        <li class="nav-item m-2"><a href="{% url 'user_managment_app:customuser_profile' %}"
+                                class="btn btn-primary link"
+                                style="background-color: #414d33;text-decoration:none;font-family: American Typewrite; font-size: 18px;">My
+                                profile</a></li>
+                        {% endif %}
+                        <li class="nav-item m-2">
+                            <form method="post" action="{% url 'logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary"
+                                    style="background-color: #414d33;text-decoration:none;font-family: American Typewrite; font-size: 18px;">Log
+                                    Out</button>
+                            </form>
+                        </li>
+                        {% else %}
+
+                        <li class="nav-item m-2"><a href="{% url 'user_managment_app:login' %}"
+                                style="background-color: #414d33;text-decoration:none;font-family: American Typewrite; font-size: 18px;"
+                                class="link">Log In</a>
+                        </li>
+                        <li class="nav-item m-2"><a href="{% url 'user_managment_app:signup' %}"
+                                style="background-color: #414d33;text-decoration:none;font-family: American Typewrite; font-size: 18px;"
+                                class="link">Sign
+                                Up</a></li>
+
+                        {% endif %}
+
+
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="logo-background"></div>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-8 text-center"> <!-- Add text-center to horizontally center -->
+
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+
+    </main>
+
+    <hr>
+    <footer class="footer mt-2">
+        <p>&copy; 2024 Pawsome. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'js/custom.js' %}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>

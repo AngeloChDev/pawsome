@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<section class="details-section">
+    <div class="container">
+        <h1 id="pet-list-heading">Pet List</h1>
+
+
+        <form id="filter-form" method="GET">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="species">Species:</label>
+                    <select id="species" name="species" class="form-control">
+                        <option value="">All Species</option>
+                        <option value="dog">Dog</option>
+                        <option value="cat">Cat</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="gender">Gender:</label>
+                    <select id="gender" name="gender" class="form-control">
+                        <option value="">All Genders</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="size">Size:</label>
+                    <select id="size" name="size" class="form-control">
+                        <option value="">All Sizes</option>
+                        <option value="small">Small</option>
+                        <option value="medium">Medium</option>
+                        <option value="large">Large</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
+        {%if pets | lenght > 0%}
+        <div class="row">
+
+            {% for pet in pets %}
+            <div class="col-lg-4 col-md-6">
+                <div class="pet-card">
+                    <a href="{% url 'animal_shelter_app:pet_detail' pet.pk %}">
+                        <h3>{{ pet.name }}</h3>
+                        <p> {{ pet.age }}</p>
+                        <img src="{{ pet.photos.url }}" alt="{{ pet.name }} Image" class="pet-image">
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        {%endif%}
+    </div>
+</section>
+
+
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        margin-top: 50px;
+        text-align: center;
+    }
+
+    .pet-card {
+        background-color: #fff;
+        border-radius: 20px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        margin-bottom: 50px;
+        width: 300px;
+
+    }
+
+    .pet-image {
+        width: 200px;
+        height: 200px;
+        border-radius: 10px;
+        margin-top: 20px;
+        /* Adjusted margin to 20px */
+    }
+
+    #filter-form {
+        margin-bottom: 30px;
+        /* Add some bottom margin for spacing */
+    }
+
+    .form-row {
+        justify-content: center;
+        /* Center align form elements */
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+        /* Add some bottom margin for spacing between form groups */
+    }
+
+    .form-group label {
+        font-weight: bold;
+        /* Make form labels bold */
+    }
+
+    .form-control {
+        border-radius: 10px;
+        /* Rounded corners for form controls */
+    }
+
+    .btn-primary {
+        border-radius: 10px;
+        /* Rounded corners for the filter button */
+    }
+</style>
+
+{% endblock %}

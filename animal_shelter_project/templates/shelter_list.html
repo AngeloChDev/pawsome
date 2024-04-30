@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <div id="home-section">
+        <h1>Shelters List</h1>
+        <a href="{% url 'user_managment_app:fullmap'%}" class="link">Search in map</a>
+    </div>
+    <section>
+        <div class="shelters-container col">
+            {% for shelter in shelters %}
+            <div class="col">
+                {%if shelter.user.image%}
+                <div class="shelter-card mt-3" style="background-image: url('{{ shelter.user.image.url }}')" alt="">
+                    {%else%}
+                    <div class="shelter-card mt-3"></div>
+                    {%endif%}
+                    <a href="{% url 'user_managment_app:shelter_detail' shelter.pk %}">
+                        <div class="shelter-details">
+                            <h2>{{ shelter.shelter_name }}</h2>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+
+{% endblock %}

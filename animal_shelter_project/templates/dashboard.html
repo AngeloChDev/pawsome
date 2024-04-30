@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <h1>Adoption Dashboard</h1>
+    <div class="charts">
+        <img src="{% static 'dashboard/adoption_chart.png' %}" alt="adoption chart" class="chart">
+        <img src="{% static 'dashboard/species_chart.png' %}" alt="species chart" class="chart">
+    </div>
+</div>
+
+<style>
+    .container {
+        margin-top: 20px;
+        margin-bottom: 300px;
+    }
+
+    .charts {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 100px;
+    }
+
+    .chart {
+        margin-top: 50px;
+        width: 45%;
+        height: auto;
+        margin-bottom: 100px;
+    }
+</style>
+
+{% endblock %}

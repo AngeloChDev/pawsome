@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h1>Map</h1>
+<button popovertarget="map" popovertargetaction="toggle" class="btn btn-primary">Show map</button>
+
+<div id="map" style="height: 80vh;">
+      {%include 'runtimemap.html'%}
+</div>
+{%endblock%}

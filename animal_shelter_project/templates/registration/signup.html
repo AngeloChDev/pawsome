@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Sign Up{% endblock title %}
+{% block content %}
+
+
+<section class="container">
+    <div class="signup">
+        <h2>Sign Up</h2>
+        <p>Would you like to register as a user or shelter?</p>
+
+        <a href="{% url 'user_managment_app:signup_customuser' %}" class="btn btn-primary">Register as a
+            User</a>
+        <a href="{% url 'user_managment_app:signup_shelter' %}" class="btn btn-primary">Register as a
+            Shelter</a>
+    </div>
+</section>
+
+<style>
+    .container {
+        margin-bottom: 500px;
+    }
+
+    .signup {
+        padding-bottom: 100px;
+    }
+</style>
+
+
+{% endblock content %}

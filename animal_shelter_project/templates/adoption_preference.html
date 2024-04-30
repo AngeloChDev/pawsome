@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<style>
+    /* Custom CSS styles */
+    .details-section {
+        margin-top: 50px;
+        text-align: center;
+    }
+
+    .details-form {
+        width: 35%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
+<section class="details-section">
+    <div class="container">
+        <h1>Adoption Preference Assistance</h1>
+        <p>Please provide your preferences to receive recommendations for pet breeds that will be suitable for your lifestyle.</p>
+        <form action="" method="post" class="details-form" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <input type="submit" value="Save" class="btn btn-primary">
+        </form>
+    </div>
+</section>
+
+{% endblock content %}
